@@ -3,8 +3,8 @@ import { CARD_NAME, default_show_bars, missingImage, plantAttributes, careFields
 
 describe('constants', () => {
   describe('CARD_NAME', () => {
-    it('should be "flower-card"', () => {
-      expect(CARD_NAME).toBe('flower-card');
+    it('should be "flower-card-rac"', () => {
+      expect(CARD_NAME).toBe('flower-card-rac');
     });
   });
 

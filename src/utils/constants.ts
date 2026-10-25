@@ -6,7 +6,7 @@ export interface DropdownOption {
     value: string;
 }
 
-export const CARD_NAME = "flower-card";
+export const CARD_NAME = "flower-card-rac";
 
 export const default_show_bars = [
     "moisture",

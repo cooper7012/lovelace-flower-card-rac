@@ -10,7 +10,7 @@ import { getHassLanguage, localize } from './localize/localize';
 import { isMediaSourceUrl, moreInfo, resolveMediaSource, shouldEnableImageLightbox } from './utils/utils';
 
 console.info(
-    `%c FLOWER-CARD %c ${packageJson.version}`,
+    `%c FLOWER-CARD-RAC %c ${packageJson.version}`,
     'color: cyan; background: black; font-weight: bold;',
     'color: darkblue; background: white; font-weight: bold;'
 );
@@ -38,7 +38,7 @@ export const getEntitySuggestion = (hass: HomeAssistant, entityId: string): Enti
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
     type: CARD_NAME,
-    name: 'Flower card',
+    name: 'Flower card (RAC)',
     preview: true,
     description: 'Custom flower card for https://github.com/Olen/homeassistant-plant',
     getEntitySuggestion,

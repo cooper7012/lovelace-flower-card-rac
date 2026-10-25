@@ -1,5 +1,5 @@
 {
-  "name": "flower-card",
+  "name": "flower-card-rac",
   "version": "2026.8.0",
   "description": "Custom flower card for https://github.com/Olen/homeassistant-plant",
   "keywords": [
@@ -8,7 +8,7 @@
     "lovelace",
     "custom-cards"
   ],
-  "module": "flower-card.js",
+  "module": "flower-card-rac.js",
   "license": "GPL-3.0-only",
   "dependencies": {
     "babel-loader": "^10.1.1",

@@ -114,7 +114,7 @@ describe('FlowerCard logic', () => {
       const suggestions = getEntitySuggestion(fakeHass, 'plant.basil');
 
       for (const suggestion of suggestions!) {
-        expect(suggestion.config.type).toBe('custom:flower-card');
+        expect(suggestion.config.type).toBe('custom:flower-card-rac');
         expect(suggestion.config.entity).toBe('plant.basil');
       }
     });

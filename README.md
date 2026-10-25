@@ -30,17 +30,17 @@ A Lovelace card for displaying plant data from the [Plant Monitor](https://githu
 
 ### Via HACS *(recommended)*
 
-1. Add this repo as a [Custom Repository](https://hacs.xyz/docs/faq/custom_repositories/) with type **Dashboard**
-2. Click **Install** in the "Flower Card" card in HACS
+1. Add `https://github.com/cooper7012/lovelace-flower-card-rac` as a [Custom Repository](https://hacs.xyz/docs/faq/custom_repositories/) with type **Dashboard**
+2. Click **Install** in the "Flower Card RAC" card in HACS
 3. Refresh the frontend (shift-reload your browser)
 
 ### Manual Installation
 
-1. Download `flower-card.js` and place it in your `<config>/www/` folder
+1. Download `flower-card-rac.js` and place it in your `<config>/www/` folder
 2. Go to **Settings** → **Dashboards** → **Resources**
 3. Add the resource:
    ```yaml
-   Url: /local/<path to>/flower-card.js
+   Url: /local/<path to>/flower-card-rac.js
    Resource type: JavaScript Module
    ```
 4. Refresh the frontend
@@ -56,7 +56,7 @@ The card can be set up from the GUI:
 Or via YAML:
 
 ```yaml
-type: custom:flower-card
+type: custom:flower-card-rac
 entity: plant.my_plant
 ```
 
@@ -80,7 +80,7 @@ entity: plant.my_plant
 ### Full Example
 
 ```yaml
-type: custom:flower-card
+type: custom:flower-card-rac
 entity: plant.my_plant
 name: "My Monstera"
 display_type: full
@@ -114,7 +114,7 @@ extra_badges:
 ### Full *(default)*
 
 ```yaml
-type: custom:flower-card
+type: custom:flower-card-rac
 entity: plant.my_plant
 display_type: full
 ```
@@ -124,7 +124,7 @@ display_type: full
 A smaller card layout with hidden units and single-column bars:
 
 ```yaml
-type: custom:flower-card
+type: custom:flower-card-rac
 entity: plant.my_plant
 display_type: compact
 ```
@@ -142,7 +142,7 @@ The display type sets defaults you can override individually:
 
 ```yaml
 # Compact header but 2 bars per row with units
-type: custom:flower-card
+type: custom:flower-card-rac
 entity: plant.my_plant
 display_type: compact
 bars_per_row: 2
