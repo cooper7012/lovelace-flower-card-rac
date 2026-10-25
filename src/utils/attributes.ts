@@ -374,11 +374,12 @@ export const renderAttribute = (card: FlowerCard, attr: DisplayedAttribute) => {
     const isCompact = card.config?.display_type === DisplayType.Compact;
     const barsPerRow = card.config?.bars_per_row ?? (isCompact ? 1 : 2);
     const showUnits = !(card.config?.hide_units ?? isCompact);
+    const showLimits = card.config?.show_limits ?? true;
     const useFullWidth = barsPerRow === 1;
 
     // In full-width mode, mark when the value/unit header is shown so the
     // bar can leave room for it (see .has-units in styles.ts).
-    const attributeCssClass = `attribute tooltip ${useFullWidth ? 'width-100' : ''}${useFullWidth && showUnits ? ' has-units' : ''}`;
+    const attributeCssClass = `attribute tooltip ${useFullWidth ? 'width-100' : ''}${useFullWidth && showUnits ? ' has-units' : ''}${showLimits ? ' has-limits' : ''}`;
 
     return html`
         <div class="${attributeCssClass}" @click="${() => moreInfo(card, attr.sensor)}">
@@ -389,10 +390,13 @@ export const renderAttribute = (card: FlowerCard, attr: DisplayedAttribute) => {
                     aval ? (val < min || val > max ? "bad" : "good") : "unavailable"
                 }" style="width: 100%;"></span>
             </div>
-            <div class="meter green">
-                <span class="${
-                    aval ? (val > max ? "bad" : "good") : "unavailable"
-                }" style="width:${aval ? pct : "0"}%;"></span>
+            <div class="meter-wrap">
+                <div class="meter green">
+                    <span class="${
+                        aval ? (val > max ? "bad" : "good") : "unavailable"
+                    }" style="width:${aval ? pct : "0"}%;"></span>
+                </div>
+                ${showLimits ? html`<div class="limits"><span class="min">${min}</span><span class="max">${max}</span></div>` : ''}
             </div>
             <div class="meter red">
                 <span class="bad" style="width:${
