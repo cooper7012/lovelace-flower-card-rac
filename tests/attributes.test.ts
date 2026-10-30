@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { getChunkedDisplayed, isPpfdUnit } from '../src/utils/attributes';
+import { formatLimit, getChunkedDisplayed, isPpfdUnit } from '../src/utils/attributes';
 import { DisplayedAttribute, DisplayedAttributes, ExtraBadge } from '../src/types/flower-card-types';
 
 describe('percentage calculation', () => {
@@ -583,5 +583,23 @@ describe('PPFD percentage calculation', () => {
 
     // Log scale gives higher percentage for lower values in the range
     expect(logPct).toBeGreaterThan(linearPct);
+  });
+});
+
+describe('formatLimit', () => {
+  it('adds thousands separators', () => {
+    expect(formatLimit(20000, { language: 'en', number_format: 'language' } as never)).toBe('20,000');
+  });
+
+  it('keeps all decimals of small thresholds', () => {
+    expect(formatLimit(0.0185, { language: 'en', number_format: 'language' } as never)).toBe('0.0185');
+  });
+
+  it('follows the user locale', () => {
+    expect(formatLimit(1234.5, { language: 'de', number_format: 'language' } as never)).toBe('1.234,5');
+  });
+
+  it('formats when no locale is available', () => {
+    expect(formatLimit(350)).toBe('350');
   });
 });

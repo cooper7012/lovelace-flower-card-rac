@@ -1,5 +1,6 @@
 import { DisplayType, DisplayedAttribute, DisplayedAttributes, ExtraBadge, Limits } from "../types/flower-card-types";
 import { TemplateResult, html } from "lit";
+import { FrontendLocaleData, formatNumber } from "custom-card-helpers";
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { careFields, careIcons, default_show_bars, getCareFields } from "./constants";
 import { getHassLanguage, localize, localizeReading } from "../localize/localize";
@@ -354,6 +355,10 @@ export const renderAttributes = (card: FlowerCard): TemplateResult[] => {
     return renderAttributeChunks(card, displayed);
 }
 
+/** Format a min/max threshold with the user's thousands/decimal separators, keeping all decimals. */
+export const formatLimit = (value: number, locale?: FrontendLocaleData): string =>
+    formatNumber(value, locale, { maximumFractionDigits: 10 });
+
 export const renderAttribute = (card: FlowerCard, attr: DisplayedAttribute) => {
     const { max, min } = attr.limits;
     const unitTooltip = attr.unit_of_measurement;
@@ -396,7 +401,7 @@ export const renderAttribute = (card: FlowerCard, attr: DisplayedAttribute) => {
                         aval ? (val > max ? "bad" : "good") : "unavailable"
                     }" style="width:${aval ? pct : "0"}%;"></span>
                 </div>
-                ${showLimits ? html`<div class="limits"><span class="min">${min}</span><span class="max">${max}</span></div>` : ''}
+                ${showLimits ? html`<div class="limits"><span class="min">${formatLimit(min, card._hass?.locale)}</span><span class="max">${formatLimit(max, card._hass?.locale)}</span></div>` : ''}
             </div>
             <div class="meter red">
                 <span class="bad" style="width:${
